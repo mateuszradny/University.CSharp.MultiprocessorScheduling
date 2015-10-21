@@ -1,0 +1,62 @@
+﻿<Window x:Class="OK.MultiprocessorScheduling.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:local="clr-namespace:OK.MultiprocessorScheduling" mc:Ignorable="d" Title="Multiprocessor Scheduling" Height="450" Width="580" ResizeMode="NoResize">
+    <DockPanel>
+        <TabControl Margin="5">
+            <TabItem Header="Algorytmy">
+                <StackPanel>
+                    <GroupBox Header="Algorytmy" Margin="5">
+                        <ListView Name="Algorithms" Margin="5">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Nazwa algorytmu" Width="300" DisplayMemberBinding="{Binding AlgorithmName}" />
+                                    <GridViewColumn Header="Czas wykonywania" Width="150" DisplayMemberBinding="{Binding ExecutionTime}" />
+                                    <GridViewColumn Header="Wynik" Width="50" DisplayMemberBinding="{Binding Result}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+                    <GroupBox Header="Dane wejściowe" Margin="5">
+                        <Grid Name="SchedulingProblemInput" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ComboBox Name="InputMode" Margin="3" SelectedIndex="0" SelectionChanged="InputMode_SelectionChanged">
+                                <ComboBoxItem Content="Wygeneruj losowo"></ComboBoxItem>
+                                <ComboBoxItem Content="Wprowadź dokładne dane"></ComboBoxItem>
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5">Liczba procesorów:</TextBlock>
+                            <TextBox Grid.Row="1" Grid.Column="1" Width="100" Margin="3" TextAlignment="Right" Text="{Binding ProcessorCount}" HorizontalAlignment="Left" />
+
+                            <TextBlock Name="TaskCountLabel" Grid.Row="2" Grid.Column="0" Margin="5">Liczba zadań:</TextBlock>
+                            <TextBox Name="TaskCountTextBox" Grid.Row="2" Grid.Column="1" Width="100" Margin="3" TextAlignment="Right" Text="{Binding TaskCount}" HorizontalAlignment="Left" />
+
+                            <TextBlock Name="MinDurationLabel" Grid.Row="3" Grid.Column="0" Margin="5">Minimalny czas trwania zadania:</TextBlock>
+                            <TextBox Name="MinDurationTextBox" Grid.Row="3" Grid.Column="1" Width="100" Margin="3" TextAlignment="Right" Text="{Binding MinDuration}" HorizontalAlignment="Left" />
+
+                            <TextBlock Name="MaxDurationLabel" Grid.Row="4" Grid.Column="0" Margin="5">Maksymalny czas trwania zadania:</TextBlock>
+                            <TextBox Name="MaxDurationTextBox" Grid.Row="4" Grid.Column="1" Width="100" Margin="3" TextAlignment="Right" Text="{Binding MaxDuration}" HorizontalAlignment="Left" />
+
+                            <TextBlock Name="TasksLabel" Grid.Row="2" Grid.Column="0" Margin="5" Visibility="Hidden">Czas trwania zadań (odzielone spacją):</TextBlock>
+                            <RichTextBox Name="TasksRichTextBox" Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" Visibility="Hidden"></RichTextBox>
+                        </Grid>
+                    </GroupBox>
+
+                    <Button Name="ResolveButton" Content="Uruchom!" Height="30" Width="100" Margin="5" Click="Resolve_Click" IsDefault="True" ToolTip="Rozwiąż problem szeregowania dla wygenerowanych danych i zaznaczonych algorytmach." HorizontalAlignment="Center" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Porównanie">
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
