@@ -1,3 +1,3 @@
 # OK.MultiprocessorScheduling
 
-Projekt na studia (Optymalizacja kombinatoryczna).
+Projekt na zaliczenie przedmiotu Optymalizacja Kombinatoryczna.
